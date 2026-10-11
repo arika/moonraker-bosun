@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-11
+
 ### 機能
 
 - Moonraker APIを通して、ホストの設定ファイルを取得し、gitで管理する(`host-tracking`ブランチに記録する)
