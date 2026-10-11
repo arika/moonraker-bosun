@@ -1,0 +1,26 @@
+# 設定した閾値を超えているメソッド。分割などで解消したら、ここから削除する
+
+Metrics/AbcSize:
+  Exclude:
+    - "lib/moonraker/bosun/commands/backup.rb"
+    - "lib/moonraker/bosun/commands/export.rb"
+    - "lib/moonraker/bosun/commands/pull.rb"
+    - "lib/moonraker/bosun/commands/push.rb"
+    - "lib/moonraker/bosun/host_tracking.rb"
+
+Metrics/MethodLength:
+  Exclude:
+    - "lib/moonraker/bosun/commands/backup.rb"
+    - "lib/moonraker/bosun/commands/export.rb"
+    - "lib/moonraker/bosun/commands/push.rb"
+    - "lib/moonraker/bosun/host_tracking.rb"
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - "lib/moonraker/bosun/host_tracking.rb"
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - "lib/moonraker/bosun/commands/export.rb"
+    - "lib/moonraker/bosun/host_tracking.rb"
+    - "lib/moonraker/bosun/sync_status.rb"

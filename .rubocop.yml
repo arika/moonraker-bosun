@@ -1,0 +1,75 @@
+inherit_from: .rubocop_todo.yml
+
+plugins:
+  - rubocop-minitest
+  - rubocop-rake
+
+AllCops:
+  TargetRubyVersion: 3.4
+  NewCops: enable
+  Exclude:
+    - "pkg/**/*"
+    - "vendor/**/*"
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# 桁揃えに%-*sなどを使うため
+# メッセージのカタログの%{name}は書式文字列ではないので、formatなどに渡す文字列だけを検査する
+Style/FormatStringToken:
+  EnforcedStyle: unannotated
+  Mode: conservative
+
+# コマンドの説明はdescribeで書き、クラスにはコメントを強制しない
+Style/Documentation:
+  Enabled: false
+
+inherit_mode:
+  merge:
+    - AllowedNames
+    - Exclude
+
+Naming/MethodParameterName:
+  AllowedNames:
+    - a
+    - b
+    - op
+
+# Metricsは、コマンドの処理の流れを1つのメソッドで読めることを優先して緩める
+Metrics/AbcSize:
+  Max: 30
+  Exclude:
+    - "test/**/*"
+
+Metrics/MethodLength:
+  Max: 25
+  Exclude:
+    - "test/**/*"
+
+Metrics/ClassLength:
+  Max: 160
+  Exclude:
+    - "test/**/*"
+
+# メッセージのカタログは、メッセージの数だけ長くなる
+Metrics/ModuleLength:
+  Exclude:
+    - "lib/moonraker/bosun/messages/catalog.rb"
+
+Metrics/CyclomaticComplexity:
+  Max: 12
+
+Metrics/PerceivedComplexity:
+  Max: 12
+
+# gitの状態などを複数の観点で確かめるテストが多いため
+Minitest/MultipleAssertions:
+  Enabled: false
+
+# setupで、前提とする操作(bosun addなど)が成功したことを確かめるため
+Minitest/AssertionInLifecycleHook:
+  Enabled: false
+
+# assert_equal 0, bosun(...) のように、操作と成功の確認を1行で書くことが多いため
+Minitest/EmptyLineBeforeAssertionMethods:
+  Enabled: false
